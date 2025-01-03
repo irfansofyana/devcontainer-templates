@@ -156,7 +156,7 @@
         9092, // Kafka
         4566, // Localstack
         9000, // Kafdrop
-        8080  // Adminer
+        8083  // Adminer
     ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
