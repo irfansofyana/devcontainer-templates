@@ -160,7 +160,8 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
     // other example if you want to download go dependencies of your project:
     // "postCreateCommand": "go mod download"
-    "postCreateCommand": "go version",
+    // the sudo chmod 666 /var/run/docker.sock is because we mount /var/run/docker.sock inside the container
+    "postCreateCommand": "go version && sudo chmod 666 /var/run/docker.sock",
 
 	// remoteUser is the user to use when connecting via SSH. More info: https://aka.ms/dev-containers-non-root.
     // this must be according to your base image. 

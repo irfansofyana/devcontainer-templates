@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../..:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock
     command: sleep infinity
     # Optional if you want to use the .env file
     # env_file: .env
@@ -136,12 +137,9 @@ services:
     environment:
       - SERVICES=s3,sqs,sns
       - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
       - AWS_DEFAULT_REGION=us-east-1
-    volumes:
-      - localstack-data:/tmp/localstack
     networks:
       - app-network
 
