@@ -12,8 +12,7 @@ jobs:
         id: filter
         with:
           filters: |
-            color: ./**/color/**
-            hello: ./**/hello/**
+            go-toolkit: ./**/go-toolkit/**
 
   test:
     needs: [detect-changes]
