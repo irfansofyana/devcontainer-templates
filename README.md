@@ -23,15 +23,18 @@ A development container template for Go development with common tools and utilit
 
 ## Using Templates
 
-The templates in this repository are published to GitHub Container Registry (GHCR). You can use them in your projects by referencing them in your devcontainer configuration.
+The templates in this repository are published to GitHub Container Registry (GHCR). You can use the `devcontainer-cli` to apply the template:
 
-For example, to use the go-toolkit template:
+for example on your `/workspace` directory, create a new folder called `go-hello-world`
 
-```jsonc
-{
-    "image": "ghcr.io/irfansofyana/devcontainer-templates/go-toolkit:latest"
-}
+```bash
+devcontainer templates apply --workspace-folder ./go-hello-world \
+    --template-id ghcr.io/irfansofyana/devcontainer-templates/go-toolkit:latest
 ```
+
+It will create the `.devcontainer` folder under `./go-hello-world`.
+
+To open it on Dev Container, you can go to `./go-hello-world` directory and open it using the Dev Container extension in Visual Studio Code.
 
 ## Development
 
