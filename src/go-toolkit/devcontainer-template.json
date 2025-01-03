@@ -1,6 +1,6 @@
 {
     "id": "go-toolkit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "Go Development Toolkit",
     "description": "This is a devcontainer template for some of the typical stacks used in Go development such as MySQL, Redis, Kafka, etc.",
     "documentationURL": "https://github.com/irfansofyana/devcontainer-templates/tree/main/src/go-toolkit",

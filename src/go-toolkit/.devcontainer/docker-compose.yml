@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../..:/workspace:cached
+      # this is so that we can access the host docker socket
+      - /var/run/docker.sock:/var/run/docker.sock
     command: sleep infinity
     # Optional if you want to use the .env file
     # env_file: .env
@@ -69,7 +71,7 @@ services:
     # You can update base image according to your needs
     image: adminer:latest
     ports:
-      - "8080:8080"
+      - "8083:8080"
     networks:
       - app-network
 
@@ -136,12 +138,9 @@ services:
     environment:
       - SERVICES=s3,sqs,sns
       - DEBUG=1
-      - DATA_DIR=/tmp/localstack/data
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
       - AWS_DEFAULT_REGION=us-east-1
-    volumes:
-      - localstack-data:/tmp/localstack
     networks:
       - app-network
 
