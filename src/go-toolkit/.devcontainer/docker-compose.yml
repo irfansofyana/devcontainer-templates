@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../..:/workspace:cached
+      # this is so that we can access the host docker socket
       - /var/run/docker.sock:/var/run/docker.sock
     command: sleep infinity
     # Optional if you want to use the .env file
@@ -70,7 +71,7 @@ services:
     # You can update base image according to your needs
     image: adminer:latest
     ports:
-      - "8080:8080"
+      - "8083:8080"
     networks:
       - app-network
 

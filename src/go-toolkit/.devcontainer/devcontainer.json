@@ -154,7 +154,9 @@
         6379, // Redis
         2181, // ZooKeeper
         9092, // Kafka
-        4566  // Localstack
+        4566, // Localstack
+        9000, // Kafdrop
+        8080  // Adminer
     ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
