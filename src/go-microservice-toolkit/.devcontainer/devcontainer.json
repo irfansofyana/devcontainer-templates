@@ -1,0 +1,169 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "Go Microservice Toolkit",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// You can add or remove features accordingly to your needs.
+    "features": {
+        // Common Utilities
+        // https://github.com/devcontainers/features/blob/main/src/common-utils/README.md
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000"
+        },
+
+        // Git
+        // https://github.com/devcontainers/features/tree/main/src/git
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": false
+        },
+
+        // AWS-CLI
+        // https://github.com/devcontainers/features/tree/main/src/aws-cli
+        // "ghcr.io/devcontainers/features/aws-cli:1": {},
+        
+        // Kubernetes toolkit
+        // https://github.com/devcontainers/features/tree/main/src/kubectl-helm-minikube
+        // "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+        //     "version": "latest",
+        //     "helm": "latest"
+        // },
+
+        // Terraform toolkit
+        // https://github.com/devcontainers/features/tree/main/src/terraform
+        // "ghcr.io/devcontainers/features/terraform:1": {},
+        
+        // jq, yq and more
+        // https://github.com/eitsupi/devcontainer-features/tree/main/src/jq-likes
+        "ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {
+            "jqVersion": "latest",
+            "yqVersion": "latest"
+        },
+
+        // Docker-in-Docker
+        // https://github.com/devcontainers/features/tree/main/src/docker-in-docker
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        
+        // Zsh plugins
+        // https://github.com/devcontainers-extra/features/tree/main/src/zsh-plugins
+        "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
+            "plugins": "git docker docker-compose kubectl golang zsh-autosuggestions zsh-syntax-highlighting",
+            "theme": "robbyrussell",
+            "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-syntax-highlighting"
+        },
+        
+        // Protobuf
+        // https://github.com/devcontainers-extra/features/tree/main/src/protoc
+        "ghcr.io/devcontainers-extra/features/protoc:1": {},
+        
+        // Kcat for Kafka utilities
+        // https://github.com/irfansofyana/devcontainer-features/tree/main/src/kcat-apt
+        "ghcr.io/irfansofyana/devcontainer-features/kcat-apt:latest": {}
+    },
+
+	// Configure tool-specific properties.
+    // You can customize accordingly to your needs.
+	"customizations": {
+        "vscode": {
+            "extensions": [
+                // Core development
+                "golang.go",
+                "ms-azuretools.vscode-docker",
+
+                // AI Assistants
+                "continue.continue",
+                "saoudrizwan.claude-dev",
+                "github.copilot",
+                "github.copilot-chat",
+
+                // Theme and UI
+                "pkief.material-icon-theme",
+                "jdinhlife.gruvbox",
+                "oderwat.indent-rainbow",
+
+                // Git tools
+                "eamodio.gitlens",
+                "ms-vscode-remote.remote-containers",
+
+                // Utilities
+                "editorconfig.editorconfig",
+                "redhat.vscode-yaml",
+                "mikestead.dotenv",
+                "vscodevim.vim"
+            ],
+            "settings": {
+                // Editor settings
+                "editor.formatOnSave": true,
+                "editor.tabSize": 2,
+                "editor.insertSpaces": true,
+                "editor.fontFamily": "Fira Code",
+                "editor.fontLigatures": true,
+                "editor.inlineSuggest.enabled": true,
+                "editor.bracketPairColorization.enabled": true,
+                "editor.guides.bracketPairs": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll": true,
+                    "source.organizeImports": true
+                },
+                // Files settings
+                "files.trimTrailingWhitespace": true,
+                "files.insertFinalNewline": true,
+                "files.eol": "\n",
+                // Go settings
+                "go.useLanguageServer": true,
+                "go.toolsManagement.autoUpdate": true,
+                "go.formatTool": "goimports",
+                "go.lintTool": "golangci-lint",
+                "go.lintFlags": [
+                    "--fast"
+                ],
+                "[go]": {
+                    "editor.tabSize": 4,
+                    "editor.insertSpaces": false,
+                    "editor.formatOnSave": true,
+                    "editor.defaultFormatter": "golang.go"
+                },
+                // Terminal settings
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.fontFamily": "MesloLGS NF",
+                // Git settings
+                "git.autofetch": true,
+                "git.enableSmartCommit": true,
+                "git.enableCommitSigning": true,
+                // Workbench settings
+                "workbench.iconTheme": "material-icon-theme",
+                "workbench.colorTheme": "Gruvbox Dark Medium",
+                "workbench.editor.enablePreview": false
+            }
+        }
+    },
+
+    // mounts is a list of mounts to add to the container.
+    "mounts": [],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+        3306, // MySQL
+        6379, // Redis
+        2181, // ZooKeeper
+        9092, // Kafka
+        4566  // Localstack
+    ],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+    // other example if you want to download go dependencies of your project:
+    // "postCreateCommand": "go mod download"
+    "postCreateCommand": "go version && sudo chmod 666 /var/run/docker.sock",
+
+	// remoteUser is the user to use when connecting via SSH. More info: https://aka.ms/dev-containers-non-root.
+    // this must be according to your base image. 
+    // For example since we are explicitly using vscode user in Dockerfile then we set vscode user here.
+	"remoteUser": "vscode"
+}
