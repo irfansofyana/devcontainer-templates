@@ -1,9 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json.
 {
-	"name": "Go Microservice Toolkit",
+	"name": "Go Development Toolkit",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// You can add or remove features accordingly to your needs.
@@ -160,7 +160,7 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
     // other example if you want to download go dependencies of your project:
     // "postCreateCommand": "go mod download"
-    "postCreateCommand": "go version && sudo chmod 666 /var/run/docker.sock",
+    "postCreateCommand": "go version",
 
 	// remoteUser is the user to use when connecting via SSH. More info: https://aka.ms/dev-containers-non-root.
     // this must be according to your base image. 
